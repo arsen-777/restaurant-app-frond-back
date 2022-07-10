@@ -6,8 +6,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Grid from '@mui/material/Grid';
 import Divider from '@mui/material/Divider';
-import GoogleApiWrapper from '../../components/Map/Map'
-
+import GoogleApiWrapper from '../../components/Map/Map';
 
 export default function AllRestaurants() {
   const [allRes, setAllRes] = useState([]);
@@ -17,34 +16,37 @@ export default function AllRestaurants() {
     maxWidth: 360,
     bgcolor: 'background.paper',
   };
-  
-  useEffect(() => {
-    fetch('http://localhost:9000/restaurants').then( res => res.json()).then( data => setAllRes(data.data))
 
+  useEffect(() => {
+    fetch('http://localhost:9000/restaurants')
+      .then((res) => res.json())
+      .then((data) => setAllRes(data.data));
   }, []);
   return (
-    <div>      
+    <div className="container">
       <h1>All Restaurants</h1>
       <Grid container spacing={2}>
         <Grid item md={4} xs={12}>
           <List sx={style} component="nav" aria-label="mailbox folders">
-
-                {allRes.map((item) => {
-                  return (
-                      <Link key={item._id} to={`/${item._id}`}>
-                        <ListItem  component="div" disablePadding>
-                          <ListItemButton>
-                            <ListItemText primary={item.name} />
-                          </ListItemButton>
-                        </ListItem>
-                        <Divider />
-                      </Link>    
-                  );
-                })}
+            {allRes.map((item) => {
+              return (
+                <Link className="linkStyle" key={item._id} to={`/${item._id}`}>
+                  <ListItem component="div" disablePadding>
+                    <ListItemButton>
+                      <ListItemText
+                        sx={{ color: ' darkblue', fontSize: '24px' }}
+                        primary={item.name}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                  <Divider />
+                </Link>
+              );
+            })}
           </List>
         </Grid>
         <Divider orientation="vertical" flexItem />
-        <Grid item md={7} xs={12} >
+        <Grid item md={7} xs={12}>
           <GoogleApiWrapper />
         </Grid>
       </Grid>

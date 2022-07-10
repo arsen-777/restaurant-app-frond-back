@@ -12,9 +12,10 @@ export default function Restaurant() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [res, setRes] = useState(null);
-  const goBack = () => navigate(-1);
   const [feedbackValue, setFeedbackValue] = useState('');
   const [rating, setRating] = useState(0);
+
+  const goBack = () => navigate(-1);
 
   useEffect(() => {
     fetch(`http://localhost:9000/restaurants/${id}`)
@@ -47,13 +48,6 @@ export default function Restaurant() {
       .catch((err) => console.log(err));
   };
 
-  const btnStyle = {
-    padding: '4px 16px',
-    color: 'white',
-    backgroundColor: 'red',
-    margin: '6px 6px',
-  };
-
   const submitFeedback = async () => {
     if (feedbackValue) {
       const updateDate = new Date();
@@ -78,7 +72,7 @@ export default function Restaurant() {
     <div className="restaurant">
       {res && (
         <>
-          <button style={btnStyle} onClick={goBack}>
+          <button className="btn" onClick={goBack}>
             Go Back
           </button>
           <h1>{res.name}</h1>

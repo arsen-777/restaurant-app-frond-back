@@ -4,12 +4,31 @@
   padding: 0;
 }
 
+.container {
+  padding: 0 20px;
+}
+
 .btn {
+  margin-top: 4px;
   padding: 4px 16px;
   color: white;
-  background-color: red;
+  background-color: rgb(29, 48, 54);
+  border: 1px solid silver;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn:hover {
+  transition: 1s;
+  background-color: rgb(56, 67, 76);
 }
 
 .restaurant {
   padding-left: 20px;
+}
+
+.linkStyle {
+  text-decoration: none;
+
+  font-size: 18px;
+  font-style: italic;
 }
